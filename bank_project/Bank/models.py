@@ -1,5 +1,6 @@
 
 from django.db import models
+from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 from decimal import Decimal
 
@@ -85,3 +86,11 @@ class Transaction(models.Model):
 
     def __str__(self):
         return f"{self.get_transaction_type_display()} - {self.amount}"
+
+class Profile(models.Model):
+    avatar = models.ImageField(upload_to='avatar_media/', blank=True,  null=True)
+    bio = models.TextField(blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+

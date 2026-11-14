@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bank System{% endblock %}</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        header {
+            background: #102a43;
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            color: #60c5ff;
+        }
+
+        main {
+            min-height: 75vh;
+            padding: 40px 8%;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2563a6;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 7px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #174a78;
+        }
+
+        .form-box {
+            background: white;
+            max-width: 450px;
+            margin: 30px auto;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000010;
+        }
+
+        .form-box h2 {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+        }
+
+        footer {
+            background: #102a43;
+            color: white;
+            text-align: center;
+            padding: 22px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🏦 Bank System</h1>
+
+    <nav>
+        <a href="{% url 'home' %}">Головна</a>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}">Профіль</a>
+
+            <form action="{% url 'logout' %}" method="post"
+                  style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn">Вийти</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Увійти</a>
+            <a href="{% url 'register' %}">Реєстрація</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer>
+    © 2026 Bank System | Навчальний проєкт
+</footer>
+
+</body>
+</html>

@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'Bank/base.html' %}
+{% block content %}
+<h2>Банківські картки</h2>
+{% for card in cards %}
+<div class="form-box">
+    <h3>{{ card }}</h3>
+    <p>Рахунок: {{ card.account }}</p>
+    <p>Термін дії: {{ card.expiry_date }}</p>
+    <p>Статус: {% if card.is_active %}Активна{% else %}Неактивна{% endif %}</p>
+</div>
+{% empty %}
+<p>Карток поки немає.</p>
+{% endfor %}
+{% endblock %}

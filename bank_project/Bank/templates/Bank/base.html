@@ -97,22 +97,25 @@
 <header>
     <h1>🏦 Bank System</h1>
 
-    <nav>
-        <a href="{% url 'home' %}">Головна</a>
+   <nav>
+    <a href="{% url 'Bank:home' %}">Головна</a>
+    <a href="{% url 'Bank:clients' %}">Клієнти</a>
+    <a href="{% url 'Bank:accounts' %}">Банківські рахунки</a>
+    <a href="{% url 'Bank:cards' %}">Банківські картки</a>
+    <a href="{% url 'Bank:transactions' %}">Транзакції</a>
 
-        {% if user.is_authenticated %}
-            <a href="{% url 'profile' %}">Профіль</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'Bank:profile' %}">Профіль</a>
 
-            <form action="{% url 'logout' %}" method="post"
-                  style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn">Вийти</button>
-            </form>
-        {% else %}
-            <a href="{% url 'login' %}">Увійти</a>
-            <a href="{% url 'register' %}">Реєстрація</a>
-        {% endif %}
-    </nav>
+        <form action="{% url 'Bank:logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn">Вийти</button>
+        </form>
+    {% else %}
+        <a href="{% url 'Bank:login' %}">Увійти</a>
+        <a href="{% url 'Bank:register' %}">Реєстрація</a>
+    {% endif %}
+</nav>
 </header>
 
 <main>
@@ -121,7 +124,7 @@
 </main>
 
 <footer>
-    © 2026 Bank System | Навчальний проєкт
+     2026 Bank System
 </footer>
 
 </body>

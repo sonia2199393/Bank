@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'Bank/base.html' %}
+{% block content %}
+<h2>Клієнти банку</h2>
+{% for client in clients %}
+<div class="form-box">
+    <h3>{{ client.first_name }} {{ client.last_name }}</h3>
+    <p>Email: {{ client.email }}</p>
+    <p>Телефон: {{ client.phone }}</p>
+</div>
+{% empty %}
+<p>Клієнтів поки немає.</p>
+{% endfor %}
+{% endblock %}

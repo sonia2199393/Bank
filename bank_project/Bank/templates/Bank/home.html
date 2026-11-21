@@ -1,170 +1,70 @@
 
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank System</title>
+{% extends 'Bank/base.html' %}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+{% block title %}Головна | Bank System{% endblock %}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f1f5f9;
-            color: #1e293b;
-        }
+{% block content %}
 
-        header {
-            background: #102a43;
-            color: white;
-            padding: 22px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+<h2 style="margin-bottom: 10px;">Вітаємо у Bank System!</h2>
+<p style="margin-bottom: 30px; color: #64748b;">
+    Система управління банківськими даними
+</p>
 
-        header h1 {
-            font-size: 25px;
-        }
+<style>
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 25px;
-        }
+.dashboard a {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #1e293b;
+    box-shadow: 0 4px 15px #00000010;
+    transition: 0.2s;
+}
 
-        .hero {
-            background: linear-gradient(120deg, #102a43, #2563a6);
-            color: white;
-            padding: 85px 8%;
-        }
+.dashboard a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 22px #00000020;
+}
 
-        .hero h2 {
-            font-size: 42px;
-            margin-bottom: 18px;
-        }
+.dashboard h3 {
+    margin-bottom: 12px;
+    color: #2563a6;
+    font-size: 21px;
+}
 
-        .hero p {
-            font-size: 18px;
-            line-height: 1.6;
-            max-width: 600px;
-        }
+.dashboard p {
+    color: #64748b;
+}
+</style>
 
-        .container {
-            padding: 50px 8%;
-        }
+<div class="dashboard">
 
-        .container h2 {
-            margin-bottom: 30px;
-        }
+    <a href="{% url 'Bank:clients' %}">
+        <h3>👥 Клієнти</h3>
+        <p>Перегляд усіх клієнтів банку</p>
+    </a>
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 22px;
-        }
+    <a href="{% url 'Bank:accounts' %}">
+        <h3>💳 Банківські рахунки</h3>
+        <p>Перегляд рахунків та балансів</p>
+    </a>
 
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 14px;
-            box-shadow: 0 4px 15px #00000010;
-        }
+    <a href="{% url 'Bank:cards' %}">
+        <h3>💰 Банківські картки</h3>
+        <p>Інформація про картки</p>
+    </a>
 
-        .card .icon {
-            font-size: 35px;
-            margin-bottom: 15px;
-        }
+    <a href="{% url 'Bank:transactions' %}">
+        <h3>🔄 Транзакції</h3>
+        <p>Історія банківських операцій</p>
+    </a>
 
-        .card h3 {
-            margin-bottom: 12px;
-            color: #174a78;
-        }
+</div>
 
-        .card p {
-            color: #64748b;
-            line-height: 1.5;
-        }
-
-        footer {
-            background: #102a43;
-            color: white;
-            text-align: center;
-            padding: 22px;
-            margin-top: 40px;
-        }
-    </style>
-</head>
-
-<body>
-
-<header>
-    <h1>🏦 Bank System</h1>
-
-    <nav>
-        <a href="/">Головна</a>
-        <a href="#services">Послуги</a>
-        <a href="#about">Про нас</a>
-    </nav>
-</header>
-
-<section class="hero">
-    <h2>Вітаємо у Bank System!</h2>
-    <p>
-        Сучасна банківська система для зручного
-        управління рахунками, картками та фінансовими операціями.
-    </p>
-</section>
-
-<section class="container" id="services">
-    <h2>Наші можливості</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <div class="icon">👤</div>
-            <h3>Клієнти</h3>
-            <p>Інформація про клієнтів банку та їхні профілі.</p>
-        </div>
-
-        <div class="card">
-            <div class="icon">💳</div>
-            <h3>Банківські картки</h3>
-            <p>Зберігання інформації про банківські картки.</p>
-        </div>
-
-        <div class="card">
-            <div class="icon">💰</div>
-            <h3>Рахунки</h3>
-            <p>Перегляд рахунків та інформації про баланс.</p>
-        </div>
-
-        <div class="card">
-            <div class="icon">📊</div>
-            <h3>Транзакції</h3>
-            <p>Історія фінансових операцій клієнтів.</p>
-        </div>
-
-    </div>
-</section>
-
-<section class="container" id="about">
-    <h2>Про нашу систему</h2>
-    <p>
-        Bank System — навчальний проєкт, створений
-        для демонстрації роботи банківської системи
-        за допомогою Python та Django.
-    </p>
-</section>
-
-<footer>
-    © 2026 Bank System. Навчальний проєкт.
-</footer>
-
-</body>
-</html>
+{% endblock %}
